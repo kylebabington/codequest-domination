@@ -1,0 +1,490 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&family=Rubik+Bubbles&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+html,body 
+{
+    height: 100%;
+    }
+
+body 
+{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#header{
+
+    display: flex;
+    flex-direction: column;
+    background-color: #709BD1;
+    text-align: center;
+    color:#1d132b;
+}
+
+h1
+{
+    font-family: "Fredoka", cursive;
+    padding:5px;
+    font-size: 30px;
+}
+
+#challenge
+{
+    font-family:"Baloo 2", cursive;
+    font-size: 16px;
+    padding-bottom: 5px;
+    font-weight:bolder;
+}
+
+span{
+
+    font-family: "Rubik Bubbles", cursive;
+    color: #4F3EC7;
+}
+
+#master
+{   
+    flex: 1;
+    background-color: #AB64BB;
+    background-size: 200% 200%;
+    animation: bgshift 12s ease-in-out infinite alternate;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+@keyframes bgshift{
+    from {background-position: left;}
+    to {background-position: right;}
+}
+
+#quiz-container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    padding: 10px;
+    
+}
+
+#redundant
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 1 0;
+    min-width: 320px;
+    align-items: center;
+    gap: 16px;
+    padding: 10px;
+}
+
+#question
+{
+    font-family: "quicksand", sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    color: #1d132b;
+    text-align: center;
+    
+}
+
+#question-container, #options-container
+{
+    width: 100%;
+    max-width: none;
+    background-color: #AB64BB;
+    color: #1d132b;
+    
+    border-radius: 8px;
+    text-align: center;
+}
+
+#question-container{
+    padding: 20px;
+    font-size:24px;
+    margin-bottom: 10px;
+    font-family: "Comic Neue", cursive;
+    font-weight: 700;
+    color: #1d132b;
+    background-color: #AB64BB;
+    border-radius: 8px;
+    text-align: center;
+
+}
+
+
+
+#options-container
+{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    background-color: #AB64BB;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 10px;
+
+}
+
+@media (max-width: 480px) {
+    #options-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+#options-container button
+ {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 18px;
+    border-radius: 8px;
+    background-color: #709BD1;
+    color: #1d132b;
+    cursor: pointer;
+    font-family: "Comic Neue", cursive;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+ }
+
+
+
+/* Animate new question */
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation:fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp
+{
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#next-btn
+{   
+    background-color: #1d132b;
+    color: #4F3EC7;
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: "Comic Neue", cursive;
+    width: auto;
+    display: block;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 18px 2px #4F3EC7;
+    
+}
+
+#next-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    animation: none;
+    box-shadow: none;
+}
+
+#next-btn:enabled:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 14px #4F3EC7;
+}
+
+@keyframes coralPulse {
+    0%, 100% { box-shadow: 0 0 16px rgba(79, 62, 199,0.5); }
+    50% { box-shadow: 0 0 32px rgba(79, 62, 199, 0.90); }
+}
+    
+
+
+#next-btn:hover:not(:disabled) {
+    background-color: #4F3EC7;
+    color: #1d132b;
+    animation: coralPulse 1.6s ease-in-out infinite;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+ #score-container 
+ {
+    flex: 1 1 0;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    border: 0;
+    border-radius: 8px;
+    opacity: 1;
+    transform: none;
+    padding: 10px;
+    min-height: 375px;
+}
+
+#score-container.show
+{
+    opacity: 1;
+    transform: translateY(0);
+    border-color: #4F3EC7;
+}
+
+#your-score
+{
+    font-family: "quicksand", sans-serif;
+    color: #1d132b;
+    font-size:32px;
+    font-weight: 900;
+}
+
+#score 
+{
+    font-family: "Rubik Bubbles", cursive;
+    font-size: 64px;
+    font-weight: 900;
+    color: #1d132b;
+    background-color: #AB64BB;
+    opacity: 0;
+    border: 4px solid transparent;
+    border-radius: 12px;
+    padding: 20px 40px;
+    margin: 10px 0 30px 0;
+    text-align: center;
+    transition: opacity 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+    box-shadow: none;
+    
+}
+/* Score reveal animation */
+#score.reveal
+{
+    opacity: 1;
+    
+}
+
+
+#restart-btn
+{
+    background-color: #4F3EC7;
+    color: #1d132b;
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: "Comic Neue", cursive;
+}
+
+/* Restart button pulse effect */
+@keyframes restartPulse {
+    0%, 100% { box-shadow: 0 0 16px rgba(79, 62, 199, 0.5); }
+    50% { box-shadow: 0 0 32px rgba(79, 62, 199, 0.9);}
+}
+
+/* Restart button hover effect */
+#restart-btn:hover:not(:disabled) {
+    background-color: #1d132b;
+    color: #4F3EC7;
+    animation: restartPulse 1.6s ease-in-out infinite;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+footer
+{
+    background-color: #709BD1;
+    text-align: center;
+    color: #1d132b;
+    padding: 10px;
+}
+
+.hidden
+{
+    visibility: hidden;
+}
+
+/* Animations and effects */
+
+/* Button hover and active effects */
+.option-btn {
+    transition: none;
+    background-color: #f2f4f8;
+    color: #1d132b;
+    border: 1px solid #1d132b;
+    border-radius: 8px;
+    font-family: "Comic Neue", cursive;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 1;
+    
+
+    
+}
+
+.option-btn.correct, .option-btn.correct:disabled {
+    background-color: mediumspringgreen !important;
+    color: #1d132b !important;
+    border-color: #1d132b !important;
+    animation: correctPulse 220ms ease-out;
+    box-shadow: 0 0 20px rgba(79, 62, 199, 0.6);
+}
+
+.option-btn.wrong, .option-btn.wrong:disabled {
+    background-color: tomato !important;
+    color: #1d132b !important;
+    border-color: #1d132b !important;
+    animation: wrongShake 160ms ease-out;
+    box-shadow: 0 0 20px rgba(79, 62, 199, 0.6);
+}
+
+.option-btn:nth-child(2) {animation-delay: 40ms;}
+.option-btn:nth-child(3) {animation-delay: 80ms;}
+.option-btn:nth-child(4) {animation-delay: 120ms;}
+
+
+.option-btn:hover:not(:disabled) {
+    filter: brightness(1.02);
+    background-color: white;
+    border: 2px solid #4F3EC7;
+    color: #1d132b;
+    
+}
+
+.option-btn:active:not(:disabled) {
+    transform: translateY(0);
+    filter: brightness(0.98);
+}
+
+/* Focus styles for accessibility */
+.option-btn:focus-visible,
+#next-btn:focus-visible,
+#restart-btn:focus-visible {
+    outline: 3px solid #4F3EC7;
+    outline-offset: 2px;
+}
+
+/* Question number progress */
+#progress {
+    text-align: center;
+    font-family: "Baloo 2", cursive;
+    color: #1d132b;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+/* Question card fade-in*/
+@keyframes qfade {
+    from { opacity: 0; transform: translateY(8px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* Option button opt-in animation */
+@keyframes optIn {
+    from {opacity: 0; transform: translateY(6px) scale(0.98);}
+    to {opacity: 1; transform: translateY(0) scale(1);}
+}
+
+/* Correct answer pulse effect */
+@keyframes correctPulse {
+    0% { box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+    50% { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18); }
+    100% { box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+}
+
+/* Wrong answer shake effect */
+@keyframes wrongShake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+}
+
+/* Progress text styles and animation */
+#progress {
+    font-family: "Baloo 2", cursive;
+    color: #1d132b;
+    font-size: 18px;
+    margin-bottom: 8px;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    animation: fadeIn 0.6s;
+}
+
+@keyframes progressPulse {
+    0%, 100% {transform: scale(1);}
+    50% {transform: scale(1.2);}
+}
+
+#progress{
+    transition: color 0.6s ease;
+    
+}
+
+.fade {
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes scoreReveal {
+    from {opacity: 0; transform: scale(0.8);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+.reveal {animation: scoreReveal 0.6s ease;}
+
+@keyframes sparkle {
+    0%, 100% { box-shadow: 0 0 16px #4F3EC7;}
+    50% { box-shadow: 0 0 40px #709BD1;}
+}
+
+.sparkle { 
+    animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@media(max-width: 768px) {
+    #options-container {grid-template-columns: 1fr;}
+    #question {font-size: 28px;}
+    #question-container {font-size: 20px;}
+    #next-btn {width: 100%;}
+    #quiz-container {gap: 16px;}
+}
+
+@media(max-width: 480px) {
+    h1 {font-size: 24px;}
+    #your-score {font-size:24px}
+    #score {font-size: 40px;}
+    }
+    
+
+
+
+
+ 
+
+
+
+
+
+
+
